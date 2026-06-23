@@ -3,809 +3,261 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Eveline Regis — Formatrice FLE</title>
+<title>Parler Français — Formatrice FLE</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --cream: #f5f0e8;
-    --warm-white: #fdfaf5;
-    --ink: #1a1510;
-    --deep: #2c2118;
-    --gold: #b8952a;
-    --gold-light: #d4b060;
-    --muted: #7a6e62;
-    --accent: #8b4513;
-    --border: #ddd5c4;
-  }
-
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    font-family: 'Jost', sans-serif;
-    background: var(--warm-white);
-    color: var(--ink);
-    overflow-x: hidden;
-    font-weight: 300;
-  }
-
-  /* NAV */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.4rem 4rem;
-    background: rgba(253,250,245,0.92);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-    transition: all 0.3s;
-  }
-
-  .nav-logo {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.4rem;
-    font-weight: 400;
-    letter-spacing: 0.05em;
-    color: var(--deep);
-    text-decoration: none;
-  }
-
-  .nav-links {
-    display: flex;
-    gap: 2.5rem;
-    list-style: none;
-  }
-
-  .nav-links a {
-    font-size: 0.78rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--muted);
-    text-decoration: none;
-    transition: color 0.2s;
-    position: relative;
-  }
-
-  .nav-links a::after {
-    content: '';
-    position: absolute;
-    bottom: -3px; left: 0;
-    width: 0; height: 1px;
-    background: var(--gold);
-    transition: width 0.3s;
-  }
-
-  .nav-links a:hover { color: var(--ink); }
-  .nav-links a:hover::after { width: 100%; }
-
-  /* HERO */
-  .hero {
-    min-height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hero-left {
-    background: var(--deep);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 8rem 5rem 6rem;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hero-left::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: 
-      radial-gradient(ellipse at 30% 70%, rgba(184,149,42,0.15) 0%, transparent 60%),
-      radial-gradient(ellipse at 80% 20%, rgba(139,69,19,0.1) 0%, transparent 50%);
-  }
-
-  .hero-tag {
-    font-size: 0.72rem;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 1.5rem;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.2s forwards;
-  }
-
-  .hero-name {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(3.5rem, 6vw, 5.5rem);
-    font-weight: 300;
-    line-height: 1.05;
-    color: var(--cream);
-    letter-spacing: -0.01em;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.4s forwards;
-  }
-
-  .hero-name em {
-    font-style: italic;
-    color: var(--gold-light);
-  }
-
-  .hero-divider {
-    width: 60px;
-    height: 1px;
-    background: var(--gold);
-    margin: 2rem 0;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.6s forwards;
-  }
-
-  .hero-tagline {
-    font-size: 1rem;
-    line-height: 1.7;
-    color: rgba(245,240,232,0.65);
-    max-width: 380px;
-    font-weight: 300;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.8s forwards;
-  }
-
-  .hero-langs {
-    display: flex;
-    gap: 0.8rem;
-    margin-top: 3rem;
-    flex-wrap: wrap;
-    opacity: 0;
-    animation: fadeUp 0.8s 1s forwards;
-  }
-
-  .lang-pill {
-    font-size: 0.7rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    padding: 0.4rem 1rem;
-    border: 1px solid rgba(184,149,42,0.4);
-    color: var(--gold-light);
-    border-radius: 20px;
-  }
-
-  .hero-right {
-    background: var(--cream);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 8rem 5rem;
-    position: relative;
-  }
-
-  .hero-right::before {
-    content: '«\00a0La langue est la maison de l'être\00a0»';
-    position: absolute;
-    bottom: 3rem;
-    right: 3rem;
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-size: 0.85rem;
-    color: var(--muted);
-    opacity: 0.6;
-    text-align: right;
-    max-width: 200px;
-    line-height: 1.5;
-  }
-
-  .photo-frame {
-    position: relative;
-    opacity: 0;
-    animation: fadeIn 1s 0.5s forwards;
-  }
-
-  .photo-frame::before {
-    content: '';
-    position: absolute;
-    top: -12px; left: -12px;
-    right: 12px; bottom: 12px;
-    border: 1px solid var(--gold);
-    border-radius: 2px;
-    z-index: 0;
-  }
-
-  .photo-frame img {
-    width: 280px;
-    height: 340px;
-    object-fit: cover;
-    object-position: center top;
-    border-radius: 2px;
-    position: relative;
-    z-index: 1;
-    display: block;
-    filter: grayscale(15%) contrast(1.05);
-  }
-
-  .photo-initials {
-    width: 280px;
-    height: 340px;
-    background: linear-gradient(135deg, var(--deep) 0%, #4a3728 100%);
-    border-radius: 2px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    z-index: 1;
-  }
-
-  .photo-initials span {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 6rem;
-    font-weight: 300;
-    color: var(--gold);
-    opacity: 0.7;
-    letter-spacing: 0.1em;
-  }
-
-  .stats-row {
-    display: flex;
-    gap: 2.5rem;
-    margin-top: 3.5rem;
-    opacity: 0;
-    animation: fadeUp 0.8s 1.2s forwards;
-  }
-
-  .stat {
-    text-align: center;
-  }
-
-  .stat-num {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 2.4rem;
-    font-weight: 400;
-    color: var(--deep);
-    line-height: 1;
-  }
-
-  .stat-label {
-    font-size: 0.65rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-top: 0.4rem;
-    display: block;
-  }
-
-  /* SECTIONS */
-  section {
-    padding: 6rem 0;
-  }
-
-  .container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 3rem;
-  }
-
-  .section-label {
-    font-size: 0.7rem;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 1rem;
-    display: block;
-  }
-
-  .section-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2.5rem, 4vw, 3.5rem);
-    font-weight: 300;
-    color: var(--deep);
-    line-height: 1.1;
-    margin-bottom: 3rem;
-  }
-
-  .section-title em {
-    font-style: italic;
-    color: var(--accent);
-  }
-
-  /* ABOUT */
-  .about {
-    background: var(--warm-white);
-    border-top: 1px solid var(--border);
-  }
-
-  .about-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 5rem;
-    align-items: start;
-  }
-
-  .about-text p {
-    font-size: 1.05rem;
-    line-height: 1.85;
-    color: #3d3530;
-    margin-bottom: 1.4rem;
-    font-weight: 300;
-  }
-
-  .about-aside {
-    padding-top: 1rem;
-  }
-
-  .info-block {
-    margin-bottom: 2.5rem;
-    padding-bottom: 2.5rem;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .info-block:last-child { border-bottom: none; }
-
-  .info-block h4 {
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 0.7rem;
-  }
-
-  .info-block p, .info-block a {
-    font-size: 0.9rem;
-    color: var(--deep);
-    line-height: 1.6;
-    text-decoration: none;
-  }
-
-  .info-block a:hover { color: var(--gold); }
-
-  /* EXPERIENCE */
-  .experience {
-    background: var(--deep);
-    color: var(--cream);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .experience::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at 80% 50%, rgba(184,149,42,0.08) 0%, transparent 60%);
-  }
-
-  .experience .section-title {
-    color: var(--cream);
-  }
-
-  .exp-timeline {
-    position: relative;
-    padding-left: 2rem;
-  }
-
-  .exp-timeline::before {
-    content: '';
-    position: absolute;
-    left: 0; top: 8px; bottom: 8px;
-    width: 1px;
-    background: linear-gradient(to bottom, var(--gold), transparent);
-  }
-
-  .exp-item {
-    position: relative;
-    margin-bottom: 3.5rem;
-    padding-left: 2.5rem;
-    opacity: 0;
-    transform: translateX(-20px);
-    transition: all 0.6s;
-  }
-
-  .exp-item.visible {
-    opacity: 1;
-    transform: translateX(0);
-  }
-
-  .exp-item::before {
-    content: '';
-    position: absolute;
-    left: -2rem;
-    top: 8px;
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    background: var(--gold);
-    border: 2px solid var(--deep);
-    box-shadow: 0 0 0 4px rgba(184,149,42,0.2);
-  }
-
-  .exp-date {
-    font-size: 0.7rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 0.5rem;
-  }
-
-  .exp-role {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.4rem;
-    font-weight: 400;
-    color: var(--cream);
-    margin-bottom: 0.3rem;
-  }
-
-  .exp-org {
-    font-size: 0.8rem;
-    letter-spacing: 0.08em;
-    color: rgba(245,240,232,0.5);
-    margin-bottom: 1rem;
-    text-transform: uppercase;
-  }
-
-  .exp-desc {
-    font-size: 0.92rem;
-    line-height: 1.8;
-    color: rgba(245,240,232,0.7);
-    font-weight: 300;
-  }
-
-  /* SKILLS */
-  .skills {
-    background: var(--cream);
-    border-top: 1px solid var(--border);
-  }
-
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-  }
-
-  .skill-card {
-    background: var(--warm-white);
-    padding: 2.5rem;
-    border-radius: 2px;
-    border: 1px solid var(--border);
-    position: relative;
-    overflow: hidden;
-    transition: transform 0.3s, box-shadow 0.3s;
-  }
-
-  .skill-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    width: 3px; height: 0;
-    background: var(--gold);
-    transition: height 0.4s;
-  }
-
-  .skill-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.08); }
-  .skill-card:hover::before { height: 100%; }
-
-  .skill-icon {
-    font-size: 1.8rem;
-    margin-bottom: 1.2rem;
-    display: block;
-  }
-
-  .skill-card h3 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.2rem;
-    font-weight: 400;
-    color: var(--deep);
-    margin-bottom: 0.8rem;
-  }
-
-  .skill-card p {
-    font-size: 0.88rem;
-    line-height: 1.7;
-    color: var(--muted);
-    font-weight: 300;
-  }
-
-  /* EDUCATION */
-  .education {
-    background: var(--warm-white);
-    border-top: 1px solid var(--border);
-  }
-
-  .edu-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-  }
-
-  .edu-item {
-    padding: 2rem 2.5rem;
-    border: 1px solid var(--border);
-    border-radius: 2px;
-    background: var(--cream);
-    transition: border-color 0.3s;
-    position: relative;
-  }
-
-  .edu-item:hover { border-color: var(--gold); }
-
-  .edu-year {
-    font-size: 0.68rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 0.5rem;
-  }
-
-  .edu-degree {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.15rem;
-    font-weight: 400;
-    color: var(--deep);
-    margin-bottom: 0.3rem;
-    line-height: 1.3;
-  }
-
-  .edu-place {
-    font-size: 0.82rem;
-    color: var(--muted);
-    font-weight: 300;
-  }
-
-  /* LANGUAGES */
-  .languages {
-    background: var(--cream);
-    border-top: 1px solid var(--border);
-  }
-
-  .lang-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.5rem;
-  }
-
-  .lang-card {
-    text-align: center;
-    padding: 3rem 2rem;
-    border: 1px solid var(--border);
-    background: var(--warm-white);
-    border-radius: 2px;
-    position: relative;
-    overflow: hidden;
-    transition: transform 0.3s;
-  }
-
-  .lang-card:hover { transform: translateY(-4px); }
-
-  .lang-card .lang-name {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.8rem;
-    font-weight: 400;
-    color: var(--deep);
-    margin-bottom: 0.5rem;
-  }
-
-  .lang-card .lang-level {
-    font-size: 0.7rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--gold);
-  }
-
-  .lang-card.native {
-    background: var(--deep);
-    border-color: var(--deep);
-  }
-
-  .lang-card.native .lang-name { color: var(--cream); }
-  .lang-card.native .lang-level { color: var(--gold-light); }
-
-  /* CONTACT */
-  .contact {
-    background: var(--deep);
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .contact::before {
-    content: 'ER';
-    position: absolute;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 30rem;
-    font-weight: 300;
-    color: rgba(255,255,255,0.02);
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
-    letter-spacing: -0.05em;
-  }
-
-  .contact .section-title { color: var(--cream); }
-
-  .contact-intro {
-    font-size: 1rem;
-    color: rgba(245,240,232,0.6);
-    max-width: 500px;
-    margin: -1.5rem auto 3.5rem;
-    line-height: 1.8;
-    font-weight: 300;
-  }
-
-  .contact-links {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    flex-wrap: wrap;
-  }
-
-  .contact-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.7rem;
-    padding: 1rem 2.5rem;
-    font-size: 0.78rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    text-decoration: none;
-    border-radius: 1px;
-    transition: all 0.3s;
-    font-family: 'Jost', sans-serif;
-    font-weight: 400;
-  }
-
-  .contact-btn.primary {
-    background: var(--gold);
-    color: var(--deep);
-    border: 1px solid var(--gold);
-  }
-
-  .contact-btn.primary:hover {
-    background: var(--gold-light);
-    border-color: var(--gold-light);
-    transform: translateY(-2px);
-  }
-
-  .contact-btn.secondary {
-    background: transparent;
-    color: var(--cream);
-    border: 1px solid rgba(245,240,232,0.3);
-  }
-
-  .contact-btn.secondary:hover {
-    border-color: var(--gold);
-    color: var(--gold-light);
-    transform: translateY(-2px);
-  }
-
-  .certif-badges {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.8rem;
-    margin-top: 4rem;
-  }
-
-  .badge {
-    font-size: 0.68rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    padding: 0.45rem 1rem;
-    border: 1px solid rgba(184,149,42,0.3);
-    color: rgba(245,240,232,0.5);
-    border-radius: 20px;
-  }
-
-  /* FOOTER */
-  footer {
-    background: var(--ink);
-    padding: 1.5rem 3rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-top: 1px solid rgba(255,255,255,0.05);
-  }
-
-  footer p {
-    font-size: 0.75rem;
-    color: rgba(255,255,255,0.3);
-    letter-spacing: 0.05em;
-  }
-
-  /* ANIMATIONS */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-
-  .reveal {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.7s, transform 0.7s;
-  }
-
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* RESPONSIVE */
-  @media (max-width: 900px) {
-    .hero { grid-template-columns: 1fr; min-height: auto; }
-    .hero-left { padding: 10rem 2.5rem 4rem; }
-    .hero-right { padding: 4rem 2.5rem; }
-    nav { padding: 1.2rem 2rem; }
-    .nav-links { gap: 1.5rem; }
-    .about-grid { grid-template-columns: 1fr; gap: 3rem; }
-    .skills-grid { grid-template-columns: 1fr 1fr; }
-    .lang-grid { grid-template-columns: repeat(2, 1fr); }
-    .edu-grid { grid-template-columns: 1fr; }
-    .container { padding: 0 2rem; }
-    section { padding: 5rem 0; }
-  }
-
-  @media (max-width: 600px) {
-    .nav-links { display: none; }
-    .skills-grid { grid-template-columns: 1fr; }
-    .lang-grid { grid-template-columns: repeat(2, 1fr); }
-    .stats-row { gap: 1.5rem; }
-  }
+:root {
+  --cream: #f5f0e8;
+  --warm-white: #fdfaf5;
+  --ink: #1a1510;
+  --deep: #2c2118;
+  --gold: #b8952a;
+  --gold-light: #d4b060;
+  --muted: #7a6e62;
+  --accent: #8b4513;
+  --border: #ddd5c4;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Jost',sans-serif;background:var(--warm-white);color:var(--ink);overflow-x:hidden;font-weight:300;}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;justify-content:space-between;align-items:center;padding:1.2rem 4rem;background:rgba(253,250,245,0.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);transition:all .3s;}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:400;letter-spacing:.05em;color:var(--deep);text-decoration:none;}
+.nav-right{display:flex;align-items:center;gap:2rem;}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s;position:relative;}
+.nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1px;background:var(--gold);transition:width .3s;}
+.nav-links a:hover{color:var(--ink);}.nav-links a:hover::after{width:100%;}
+.lang-sw{display:flex;gap:.3rem;}
+.lb{font-size:.65rem;letter-spacing:.08em;padding:.25rem .6rem;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;font-family:'Jost',sans-serif;transition:all .2s;}
+.lb.active{background:var(--gold);color:var(--deep);border-color:var(--gold);font-weight:500;}
+.lb:hover:not(.active){border-color:var(--gold);color:var(--gold);}
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;padding-top:0;}
+.hero-left{background:var(--deep);display:flex;flex-direction:column;justify-content:flex-end;padding:8rem 5rem 6rem;position:relative;overflow:hidden;}
+.hero-left::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 70%,rgba(184,149,42,.12) 0%,transparent 60%),radial-gradient(ellipse at 80% 20%,rgba(139,69,19,.08) 0%,transparent 50%);}
+.hero-tag{font-size:.72rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;opacity:0;animation:fadeUp .8s .2s forwards;position:relative;}
+.hero-name{font-family:'Cormorant Garamond',serif;font-size:clamp(3.5rem,6vw,5.5rem);font-weight:300;line-height:1.05;color:var(--cream);letter-spacing:-.01em;opacity:0;animation:fadeUp .8s .4s forwards;position:relative;}
+.hero-name em{font-style:italic;color:var(--gold-light);}
+.hero-divider{width:60px;height:1px;background:var(--gold);margin:2rem 0;opacity:0;animation:fadeUp .8s .6s forwards;position:relative;}
+.hero-tagline{font-size:1rem;line-height:1.7;color:rgba(245,240,232,.65);max-width:380px;font-weight:300;opacity:0;animation:fadeUp .8s .8s forwards;position:relative;}
+.hero-langs{display:flex;gap:.7rem;margin-top:2.5rem;flex-wrap:wrap;opacity:0;animation:fadeUp .8s 1s forwards;position:relative;}
+.lang-pill{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;padding:.38rem .95rem;border:1px solid rgba(184,149,42,.4);color:var(--gold-light);border-radius:20px;}
+.hero-right{background:var(--cream);display:flex;flex-direction:column;justify-content:center;align-items:center;padding:8rem 5rem;position:relative;}
+.hero-right::before{content:'\00ab\00a0La langue est la maison de l\2019\00eatre\00a0\00bb';position:absolute;bottom:3rem;right:2.5rem;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.83rem;color:var(--muted);opacity:.5;text-align:right;max-width:200px;line-height:1.5;}
+.photo-frame{position:relative;opacity:0;animation:fadeIn 1s .5s forwards;}
+.photo-frame::before{content:'';position:absolute;top:-12px;left:-12px;right:12px;bottom:12px;border:1px solid var(--gold);border-radius:2px;z-index:0;}
+.photo-init{width:280px;height:340px;background:linear-gradient(135deg,var(--deep) 0%,#4a3728 100%);border-radius:2px;display:flex;align-items:center;justify-content:center;position:relative;z-index:1;}
+.photo-init span{font-family:'Cormorant Garamond',serif;font-size:6rem;font-weight:300;color:var(--gold);opacity:.7;letter-spacing:.1em;}
+.stats-row{display:flex;gap:2.5rem;margin-top:3.5rem;opacity:0;animation:fadeUp .8s 1.2s forwards;}
+.stat{text-align:center;}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:2.4rem;font-weight:400;color:var(--deep);line-height:1;}
+.stat-label{font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-top:.4rem;display:block;}
+section{padding:6rem 0;}
+.container{max-width:1100px;margin:0 auto;padding:0 3rem;}
+.sec-label{font-size:.7rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;display:block;}
+.sec-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,4vw,3.5rem);font-weight:300;color:var(--deep);line-height:1.1;margin-bottom:3rem;}
+.sec-title em{font-style:italic;color:var(--accent);}
+.about{background:var(--warm-white);border-top:1px solid var(--border);}
+.about-grid{display:grid;grid-template-columns:2fr 1fr;gap:5rem;align-items:start;}
+.about-text p{font-size:1.02rem;line-height:1.88;color:#3d3530;margin-bottom:1.4rem;font-weight:300;}
+.about-cert{font-size:.85rem;font-weight:400;color:var(--deep);border-left:2px solid var(--gold);padding-left:1rem;margin-bottom:1.6rem;line-height:1.65;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.05rem;}
+.about-aside{padding-top:1rem;}
+.info-block{margin-bottom:2rem;padding-bottom:2rem;border-bottom:1px solid var(--border);}
+.info-block:last-child{border-bottom:none;margin-bottom:0;}
+.info-block h4{font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:.6rem;}
+.info-block p,.info-block a{font-size:.9rem;color:var(--deep);line-height:1.6;text-decoration:none;}
+.info-block a:hover{color:var(--gold);}
+.skills{background:var(--cream);border-top:1px solid var(--border);}
+.skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;}
+.skill-card{background:var(--warm-white);padding:2.5rem;border-radius:2px;border:1px solid var(--border);position:relative;overflow:hidden;transition:transform .3s;}
+.skill-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:0;background:var(--gold);transition:height .4s;}
+.skill-card:hover{transform:translateY(-4px);}.skill-card:hover::before{height:100%;}
+.skill-icon{font-size:1.8rem;margin-bottom:1.2rem;display:block;}
+.skill-card h3{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:400;color:var(--deep);margin-bottom:.8rem;}
+.skill-card p{font-size:.88rem;line-height:1.7;color:var(--muted);font-weight:300;}
+.languages{background:var(--warm-white);border-top:1px solid var(--border);}
+.lang-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;}
+.lang-card{text-align:center;padding:3rem 2rem;border:1px solid var(--border);background:var(--cream);border-radius:2px;transition:transform .3s;position:relative;overflow:hidden;}
+.lang-card:hover{transform:translateY(-4px);}
+.lang-card .lang-name{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:400;color:var(--deep);margin-bottom:.5rem;}
+.lang-card .lang-level{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);}
+.lang-card.native{background:var(--deep);border-color:var(--deep);}
+.lang-card.native .lang-name{color:var(--cream);}
+.lang-card.native .lang-level{color:var(--gold-light);}
+.cal-section{background:var(--cream);border-top:1px solid var(--border);}
+.cal-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;}
+.cal-box{border:1px solid var(--border);border-radius:2px;padding:2rem;background:var(--warm-white);}
+.cal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.2rem;}
+.cal-month-lbl{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--deep);}
+.cal-navs{display:flex;gap:.7rem;}
+.cal-navs button{background:none;border:1px solid var(--border);border-radius:50%;width:28px;height:28px;cursor:pointer;color:var(--gold);font-size:1rem;display:flex;align-items:center;justify-content:center;transition:all .2s;}
+.cal-navs button:hover{background:var(--gold);color:var(--deep);border-color:var(--gold);}
+.cal-dh{display:grid;grid-template-columns:repeat(7,1fr);text-align:center;margin-bottom:.5rem;}
+.cal-dh span{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:.3rem 0;}
+.cal-days{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;text-align:center;}
+.cal-day{font-size:.82rem;padding:.4rem;border-radius:2px;color:var(--muted);}
+.cal-day.avail{background:#ede9e0;color:var(--deep);cursor:pointer;transition:all .2s;}
+.cal-day.avail:hover{background:var(--gold);color:var(--deep);}
+.cal-day.bkd{background:#f0e8d8;color:var(--muted);text-decoration:line-through;}
+.cal-day.tod{background:var(--deep);color:var(--gold);border-radius:50%;}
+.cal-legend{display:flex;gap:1.2rem;margin-top:.9rem;flex-wrap:wrap;}
+.cal-legend span{font-size:.7rem;color:var(--muted);display:flex;align-items:center;gap:5px;}
+.cal-legend .dot{width:10px;height:10px;border-radius:2px;display:inline-block;}
+.cal-info h4{font-family:'Cormorant Garamond',serif;font-size:1.25rem;color:var(--deep);margin-bottom:1rem;}
+.cal-info p{font-size:.9rem;line-height:1.8;color:var(--muted);margin-bottom:1.2rem;font-weight:300;}
+.slot-blk{border:1px solid var(--border);border-left:2px solid var(--gold);border-radius:2px;padding:.85rem 1.1rem;margin-bottom:.7rem;background:var(--warm-white);}
+.slot-lbl{font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:.25rem;display:block;}
+.slot-times{font-size:.88rem;color:var(--deep);}
+.testimonials{background:var(--warm-white);border-top:1px solid var(--border);}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;}
+.testi-card{background:var(--cream);border:1px solid var(--border);border-radius:2px;padding:2.5rem;transition:transform .3s;position:relative;overflow:hidden;}
+.testi-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:0;background:var(--gold);transition:height .4s;}
+.testi-card:hover{transform:translateY(-4px);}.testi-card:hover::before{height:100%;}
+.qm{font-family:'Cormorant Garamond',serif;font-size:3.5rem;color:var(--gold);line-height:1;margin-bottom:.6rem;display:block;opacity:.6;}
+.testi-text{font-size:.9rem;line-height:1.78;color:#3d3530;margin-bottom:1.2rem;font-weight:300;}
+.testi-author{display:flex;align-items:center;gap:.8rem;margin-bottom:.5rem;}
+.tav{width:36px;height:36px;border-radius:50%;background:var(--deep);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--gold);flex-shrink:0;}
+.a-name{font-size:.88rem;font-weight:500;color:var(--deep);}
+.a-detail{font-size:.72rem;color:var(--muted);}
+.stars{color:var(--gold);font-size:.85rem;letter-spacing:2px;}
+.pricing{background:var(--cream);border-top:1px solid var(--border);}
+.pricing-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;}
+.price-card{border:1px solid var(--border);border-radius:2px;padding:2.5rem 1.5rem;text-align:center;position:relative;transition:transform .3s;background:var(--warm-white);}
+.price-card:hover{transform:translateY(-4px);}
+.price-card.feat{border-color:var(--gold);border-width:1.5px;background:var(--deep);}
+.price-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;background:var(--gold);color:var(--deep);padding:3px 14px;border-radius:20px;white-space:nowrap;font-weight:500;}
+.price-tier{font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem;display:block;}
+.price-card.feat .price-tier{color:var(--gold-light);}
+.price-amount{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:300;color:var(--deep);line-height:1;margin-bottom:.3rem;}
+.price-card.feat .price-amount{color:var(--cream);}
+.price-sub{font-size:.78rem;color:var(--muted);margin-bottom:1.2rem;}
+.price-card.feat .price-sub{color:rgba(245,240,232,.55);}
+.price-divl{height:1px;background:var(--border);margin-bottom:1.2rem;}
+.price-card.feat .price-divl{background:rgba(245,240,232,.15);}
+.price-features{font-size:.82rem;line-height:1.9;color:var(--muted);}
+.price-card.feat .price-features{color:rgba(245,240,232,.7);}
+.pricing-note{text-align:center;font-size:.8rem;color:var(--muted);margin-top:2rem;}
+.contact{background:var(--deep);text-align:center;padding:7rem 0;position:relative;overflow:hidden;}
+.contact::before{content:'PF';position:absolute;font-family:'Cormorant Garamond',serif;font-size:30rem;font-weight:300;color:rgba(255,255,255,.02);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;letter-spacing:-.05em;}
+.contact .sec-title{color:var(--cream);}
+.contact-intro{font-size:1rem;color:rgba(245,240,232,.6);max-width:500px;margin:-1.5rem auto 3.5rem;line-height:1.8;font-weight:300;}
+.contact-links{display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap;}
+.contact-btn{display:inline-flex;align-items:center;gap:.7rem;padding:1rem 2.5rem;font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;text-decoration:none;border-radius:1px;transition:all .3s;font-family:'Jost',sans-serif;font-weight:400;cursor:pointer;border:none;}
+.contact-btn.primary{background:var(--gold);color:var(--deep);border:1px solid var(--gold);}
+.contact-btn.primary:hover{background:var(--gold-light);border-color:var(--gold-light);transform:translateY(-2px);}
+.contact-btn.secondary{background:transparent;color:var(--cream);border:1px solid rgba(245,240,232,.3);}
+.contact-btn.secondary:hover{border-color:var(--gold);color:var(--gold-light);transform:translateY(-2px);}
+.certif-badges{display:flex;flex-wrap:wrap;justify-content:center;gap:.8rem;margin-top:4rem;}
+.badge{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;padding:.45rem 1rem;border:1px solid rgba(184,149,42,.3);color:rgba(245,240,232,.5);border-radius:20px;}
+footer{background:var(--ink);padding:1.5rem 3rem;display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(255,255,255,.05);}
+footer p{font-size:.75rem;color:rgba(255,255,255,.3);letter-spacing:.05em;}
+.modal-overlay{position:fixed;inset:0;background:rgba(26,21,16,.72);z-index:1000;display:none;align-items:center;justify-content:center;padding:1rem;}
+.modal-overlay.open{display:flex;}
+.modal{background:var(--warm-white);border-radius:2px;width:100%;max-width:520px;overflow:hidden;animation:modalIn .3s ease;border:1px solid var(--border);}
+@keyframes modalIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.modal-hdr{background:var(--deep);padding:1.6rem 2rem;display:flex;justify-content:space-between;align-items:flex-start;}
+.modal-title{font-family:'Cormorant Garamond',serif;font-size:1.45rem;color:var(--cream);font-weight:300;}
+.modal-date-lbl{font-size:.72rem;color:var(--gold);margin-top:.25rem;letter-spacing:.08em;}
+.modal-x{background:none;border:none;color:rgba(245,240,232,.5);font-size:1.3rem;cursor:pointer;line-height:1;padding:0;transition:color .2s;flex-shrink:0;}
+.modal-x:hover{color:var(--gold);}
+.modal-body{padding:1.8rem 2rem 0;}
+.frow{margin-bottom:1.1rem;}
+.frow label{display:block;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:.35rem;}
+.frow input,.frow select,.frow textarea{width:100%;padding:.68rem .9rem;border:1px solid var(--border);border-radius:1px;font-family:'Jost',sans-serif;font-size:.88rem;color:var(--ink);background:var(--warm-white);outline:none;transition:border-color .2s;font-weight:300;}
+.frow input:focus,.frow select:focus,.frow textarea:focus{border-color:var(--gold);}
+.frow textarea{resize:vertical;min-height:75px;}
+.frg{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.modal-ftr{padding:1.2rem 2rem 1.8rem;display:flex;gap:.8rem;}
+.btn-sub{flex:1;padding:.88rem;background:var(--gold);color:var(--deep);border:none;border-radius:1px;font-family:'Jost',sans-serif;font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;transition:background .2s;font-weight:500;}
+.btn-sub:hover{background:var(--gold-light);}.btn-sub:disabled{opacity:.6;cursor:not-allowed;}
+.btn-can{padding:.88rem 1.4rem;background:transparent;color:var(--muted);border:1px solid var(--border);border-radius:1px;font-family:'Jost',sans-serif;font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;transition:all .2s;}
+.btn-can:hover{border-color:var(--gold);color:var(--gold);}
+.modal-ok{padding:2.5rem 2rem;text-align:center;display:none;}
+.modal-ok .chk{font-size:2.8rem;margin-bottom:1rem;}
+.modal-ok h3{font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:var(--deep);margin-bottom:.8rem;}
+.modal-ok p{font-size:.9rem;color:var(--muted);line-height:1.7;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+@media(max-width:900px){.hero{grid-template-columns:1fr;min-height:auto;}.hero-left{padding:8rem 2.5rem 4rem;}.hero-right{padding:4rem 2.5rem;}.nav-right{gap:1rem;}nav{padding:1rem 1.5rem;}.about-grid,.cal-grid{grid-template-columns:1fr;gap:3rem;}.skills-grid,.testi-grid{grid-template-columns:1fr 1fr;}.lang-grid,.pricing-grid{grid-template-columns:1fr 1fr;}.container{padding:0 1.5rem;}section{padding:5rem 0;}}
+@media(max-width:600px){.nav-links{display:none;}.skills-grid,.testi-grid,.lang-grid,.pricing-grid,.frg{grid-template-columns:1fr;}footer{flex-direction:column;gap:.4rem;text-align:center;}}
 </style>
 </head>
 <body>
 
+<!-- BOOKING MODAL -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <div class="modal-hdr">
+      <div><div class="modal-title" id="modalTitle">R&#233;server une session</div><div class="modal-date-lbl" id="modalDateLbl"></div></div>
+      <button class="modal-x" onclick="closeModal()">&#10005;</button>
+    </div>
+    <div id="modalForm">
+      <div class="modal-body">
+        <div class="frg">
+          <div class="frow"><label id="lbl-name">Pr&#233;nom &amp; Nom</label><input type="text" id="f-name" placeholder="Marie Dupont"></div>
+          <div class="frow"><label id="lbl-phone">T&#233;l&#233;phone</label><input type="tel" id="f-phone" placeholder="+33 6 00 00 00 00"></div>
+        </div>
+        <div class="frow"><label id="lbl-email">Adresse email</label><input type="email" id="f-email" placeholder="votre@email.com"></div>
+        <div class="frg">
+          <div class="frow"><label id="lbl-slot">Cr&#233;neau</label><select id="f-slot"><option>9:00</option><option>10:00</option><option>11:00</option><option>14:00</option><option>15:00</option><option>16:00</option><option>17:00</option></select></div>
+          <div class="frow"><label id="lbl-type">Format</label><select id="f-type"><option id="opt-online">En ligne</option><option id="opt-inp">En pr&#233;sentiel &#8211; Menton</option></select></div>
+        </div>
+        <div class="frow"><label id="lbl-level">Niveau</label><select id="f-level"><option id="opt-deb">D&#233;butant (A1&#8211;A2)</option><option id="opt-int">Interm&#233;diaire (B1&#8211;B2)</option><option id="opt-adv">Avanc&#233; (C1&#8211;C2)</option><option id="opt-lit">Alphab&#233;tisation</option></select></div>
+        <div class="frow"><label id="lbl-msg">Message (optionnel)</label><textarea id="f-msg" placeholder="Vos objectifs ou toute information utile&#8230;"></textarea></div>
+      </div>
+      <div class="modal-ftr">
+        <button class="btn-can" id="btn-can" onclick="closeModal()">Annuler</button>
+        <button class="btn-sub" id="btn-sub" onclick="submitBooking()">Confirmer la r&#233;servation</button>
+      </div>
+    </div>
+    <div class="modal-ok" id="modalOk">
+      <div class="chk">&#x2705;</div>
+      <h3 id="ok-title">Demande envoy&#233;e&#160;!</h3>
+      <p id="ok-msg">Votre demande a &#233;t&#233; re&#231;ue. Un email de confirmation avec les coordonn&#233;es bancaires vous a &#233;t&#233; envoy&#233;. Parler Fran&#231;ais vous contactera tr&#232;s prochainement.</p>
+    </div>
+  </div>
+</div>
+
 <!-- NAV -->
-<nav>
-  <a href="#" class="nav-logo">Eveline Regis</a>
-  <ul class="nav-links">
-    <li><a href="#about">À propos</a></li>
-    <li><a href="#experience">Parcours</a></li>
-    <li><a href="#skills">Compétences</a></li>
-    <li><a href="#education">Formation</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
+<nav id="mainNav">
+  <a href="#" class="nav-logo">Parler Fran&#231;ais</a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#about" data-fr="&#192; propos" data-en="About" data-it="Chi sono">&#192; propos</a></li>
+      <li><a href="#skills" data-fr="Comp&#233;tences" data-en="Skills" data-it="Competenze">Comp&#233;tences</a></li>
+      <li><a href="#calendar" data-fr="R&#233;server" data-en="Book" data-it="Prenota">R&#233;server</a></li>
+      <li><a href="#pricing" data-fr="Tarifs" data-en="Rates" data-it="Tariffe">Tarifs</a></li>
+      <li><a href="#contact" data-fr="Contact" data-en="Contact" data-it="Contatto">Contact</a></li>
+    </ul>
+    <div class="lang-sw">
+      <button class="lb active" onclick="setLang('fr')">FR</button>
+      <button class="lb" onclick="setLang('en')">EN</button>
+      <button class="lb" onclick="setLang('it')">IT</button>
+    </div>
+  </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
   <div class="hero-left">
-    <span class="hero-tag">Formatrice de Français FLE · Menton, France</span>
-    <h1 class="hero-name">Eveline<br><em>Regis</em></h1>
+    <span class="hero-tag" data-fr="Cours de fran&#231;ais FLE" data-en="French FLE courses" data-it="Corsi di francese FLE">Cours de fran&#231;ais FLE</span>
+    <h1 class="hero-name">Parler<br><em>Fran&#231;ais</em></h1>
     <div class="hero-divider"></div>
-    <p class="hero-tagline">
-      Passionnée par la linguistique et l'enseignement du français langue étrangère, je crée des environnements d'apprentissage dynamiques, interactifs et centrés sur l'apprenant.
-    </p>
+    <p class="hero-tagline" data-fr="Apprenez le fran&#231;ais avec nos cours de FLE en pr&#233;sentiel ou en ligne, accessibles &#224; tous les niveaux, du d&#233;butant &#224; l&#39;avanc&#233;, pour r&#233;pondre &#224; vos objectifs personnels, acad&#233;miques ou professionnels." data-en="Learn French with our FLE courses, in-person or online, accessible to all levels from beginner to advanced, tailored to your personal, academic or professional goals." data-it="Impara il francese con i nostri corsi FLE in presenza o online, accessibili a tutti i livelli, dal principiante all&#39;avanzato, per raggiungere i tuoi obiettivi personali, accademici o professionali.">Apprenez le fran&#231;ais avec nos cours de FLE en pr&#233;sentiel ou en ligne, accessibles &#224; tous les niveaux, du d&#233;butant &#224; l&#39;avanc&#233;, pour r&#233;pondre &#224; vos objectifs personnels, acad&#233;miques ou professionnels.</p>
     <div class="hero-langs">
-      <span class="lang-pill">FLE / FLI</span>
-      <span class="lang-pill">Alphabétisation</span>
+      <span class="lang-pill">FLE / FLE adapt&#233;</span>
       <span class="lang-pill">DELF / DALF</span>
-      <span class="lang-pill">Cloé / Socle</span>
-      <span class="lang-pill">Voltaire</span>
+      <span class="lang-pill">Clo&#233;</span>
+      <span class="lang-pill">Alphab&#233;tisation</span>
+      <span class="lang-pill">Certificat Voltaire</span>
     </div>
   </div>
   <div class="hero-right">
-    <div class="photo-frame">
-      <div class="photo-initials">
-        <span>ER</span>
-      </div>
-    </div>
+    <div class="photo-frame"><div class="photo-init"><span>PF</span></div></div>
     <div class="stats-row">
-      <div class="stat">
-        <div class="stat-num">8+</div>
-        <span class="stat-label">Années FLE</span>
-      </div>
-      <div class="stat">
-        <div class="stat-num">4</div>
-        <span class="stat-label">Langues</span>
-      </div>
-      <div class="stat">
-        <div class="stat-num">100%</div>
-        <span class="stat-label">Sur mesure</span>
-      </div>
+      <div class="stat"><div class="stat-num">4</div><span class="stat-label" data-fr="Langues" data-en="Languages" data-it="Lingue">Langues</span></div>
+      <div class="stat"><div class="stat-num">100%</div><span class="stat-label" data-fr="Sur mesure" data-en="Tailored" data-it="Personalizzato">Sur mesure</span></div>
     </div>
   </div>
 </section>
@@ -815,105 +267,19 @@
   <div class="container">
     <div class="about-grid">
       <div class="about-text reveal">
-        <span class="section-label">À propos</span>
-        <h2 class="section-title">L'apprentissage<br>comme <em>vocation</em></h2>
-        <p>
-          Professionnelle dotée de nombreuses années d'expérience dans le domaine de l'enseignement du français FLE aux demandeurs d'emploi, aux particuliers et aux entreprises, je suis reconnue pour ma capacité à créer un environnement d'apprentissage dynamique, interactif et stimulant.
-        </p>
-        <p>
-          Mon ambition est de susciter, chez mes élèves, l'amour de la langue et de la culture française. Habituée à travailler avec des classes hétérogènes, je mets l'accent sur la pratique orale, la grammaire, le vocabulaire, la phonologie et l'expression écrite.
-        </p>
-        <p>
-          Mon approche est centrée sur l'apprenant, en favorisant l'interactivité, la motivation et la confiance en soi, adaptées aux besoins spécifiques de chaque individu. Consciencieuse et créative, j'assure les formations en favorisant les interactions et l'expression de chacun.
-        </p>
+        <span class="sec-label" data-fr="&#192; propos" data-en="About" data-it="Chi sono">&#192; propos</span>
+        <h2 class="sec-title" data-fr="L&#39;apprentissage comme <em>vocation</em>" data-en="Learning as a <em>vocation</em>" data-it="L&#39;apprendimento come <em>vocazione</em>">L&#39;apprentissage comme <em>vocation</em></h2>
+        <p class="about-cert" data-fr="Formatrice de fran&#231;ais FLE &#183; Parcours FLE / FLE adapt&#233; &#183; RAN &#183; Alphab&#233;tisation &#183; Pr&#233;paration Certificat professionnel Clo&#233;, DELF/DALF et Certificat Voltaire" data-en="French FLE Trainer &#183; FLE / Adapted FLE &#183; RAN &#183; Literacy &#183; Professional Certificate preparation: Clo&#233;, DELF/DALF and Certificat Voltaire" data-it="Formatrice FLE &#183; FLE / FLE adattato &#183; RAN &#183; Alfabetizzazione &#183; Preparazione: Clo&#233;, DELF/DALF e Certificat Voltaire">Formatrice de fran&#231;ais FLE &#183; Parcours FLE / FLE adapt&#233; &#183; RAN &#183; Alphab&#233;tisation &#183; Pr&#233;paration Certificat professionnel Clo&#233;, DELF/DALF et Certificat Voltaire</p>
+        <p data-fr="Professionnelle dot&#233;e de nombreuses ann&#233;es d&#39;exp&#233;rience dans le domaine de l&#39;enseignement du fran&#231;ais FLE aux demandeurs d&#39;emploi mais aussi aux particuliers et aux entreprises, je suis reconnue pour ma capacit&#233; &#224; cr&#233;er un environnement d&#39;apprentissage dynamique, interactif et stimulant en cherchant, chez mes &#233;l&#232;ves, de susciter l&#39;amour de la langue et de la culture du pays." data-en="A professional with many years of experience teaching French FLE to job seekers, individuals and companies, recognised for my ability to create a dynamic, interactive and stimulating learning environment that inspires a love for the language and culture of France." data-it="Professionista con molti anni di esperienza nell&#39;insegnamento del francese FLE a persone in cerca di lavoro, privati e aziende, riconosciuta per la mia capacit&#224; di creare un ambiente di apprendimento dinamico e stimolante.">Professionnelle dot&#233;e de nombreuses ann&#233;es d&#39;exp&#233;rience dans le domaine de l&#39;enseignement du fran&#231;ais FLE aux demandeurs d&#39;emploi mais aussi aux particuliers et aux entreprises, je suis reconnue pour ma capacit&#233; &#224; cr&#233;er un environnement d&#39;apprentissage dynamique, interactif et stimulant en cherchant, chez mes &#233;l&#232;ves, de susciter l&#39;amour de la langue et de la culture du pays.</p>
+        <p data-fr="Habitu&#233;e &#224; travailler avec des classes h&#233;t&#233;rog&#232;nes, dot&#233;e d&#39;une passion pour la linguistique et d&#39;un engagement profond pour le d&#233;veloppement des comp&#233;tences de communication de mes &#233;l&#232;ves, je pr&#233;pare et j&#39;anime des cours sur mesure." data-en="Experienced with heterogeneous classes and driven by a deep passion for linguistics, I prepare and deliver bespoke courses fully tailored to each learner's goals and communication needs." data-it="Esperta di classi eterogenee e guidata da una profonda passione per la linguistica, preparo e animo corsi su misura completamente adattati agli obiettivi di ogni apprendente.">Habitu&#233;e &#224; travailler avec des classes h&#233;t&#233;rog&#232;nes, dot&#233;e d&#39;une passion pour la linguistique et d&#39;un engagement profond pour le d&#233;veloppement des comp&#233;tences de communication de mes &#233;l&#232;ves, je pr&#233;pare et j&#39;anime des cours sur mesure.</p>
+        <p data-fr="Je mets l&#39;accent sur la pratique et la production orale, la grammaire, le vocabulaire, la compr&#233;hension et la production &#233;crite et la phonologie en utilisant des m&#233;thodes p&#233;dagogiques innovantes et des ressources multim&#233;dias adapt&#233;es. Mon approche est centr&#233;e sur l&#39;apprenant, en favorisant l&#39;interactivit&#233;, la motivation et la confiance en soi adapt&#233;es aux besoins sp&#233;cifiques de chacun. Consciencieuse et cr&#233;ative, j&#39;assure les formations en favorisant les interactions et l&#39;expression de chacun." data-en="I focus on oral practice and production, grammar, vocabulary, reading comprehension, written expression and phonology, using innovative pedagogical methods and adapted multimedia resources. My approach is learner-centred, fostering interactivity, motivation and self-confidence tailored to each individual's specific needs. Conscientious and creative, I ensure that every learner feels heard and able to express themselves fully." data-it="Mi concentro sulla pratica e produzione orale, grammatica, vocabolario, comprensione e produzione scritta e fonologia, utilizzando metodi pedagogici innovativi. Il mio approccio &#232; centrato sull&#39;apprendente, promuovendo interattivit&#224;, motivazione e fiducia in s&#233;.">Je mets l&#39;accent sur la pratique et la production orale, la grammaire, le vocabulaire, la compr&#233;hension et la production &#233;crite et la phonologie en utilisant des m&#233;thodes p&#233;dagogiques innovantes et des ressources multim&#233;dias adapt&#233;es. Mon approche est centr&#233;e sur l&#39;apprenant, en favorisant l&#39;interactivit&#233;, la motivation et la confiance en soi adapt&#233;es aux besoins sp&#233;cifiques de chacun. Consciencieuse et cr&#233;ative, j&#39;assure les formations en favorisant les interactions et l&#39;expression de chacun.</p>
       </div>
       <div class="about-aside reveal">
-        <div class="info-block">
-          <h4>Localisation</h4>
-          <p>Menton, Alpes-Maritimes<br>France (06500)</p>
-        </div>
-        <div class="info-block">
-          <h4>Téléphone</h4>
-          <p><a href="tel:+330698955357">(+33) 06 98 95 53 57</a></p>
-        </div>
-        <div class="info-block">
-          <h4>Adresse électronique</h4>
-          <p><a href="mailto:evireg@gmail.com">evireg@gmail.com</a></p>
-        </div>
-        <div class="info-block">
-          <h4>Nationalité</h4>
-          <p>Italienne</p>
-        </div>
-        <div class="info-block">
-          <h4>LinkedIn</h4>
-          <p><a href="https://linkedin.com/in/eveline-regis" target="_blank">Eveline Regis →</a></p>
-        </div>
+        <div class="info-block"><h4 data-fr="Localisation" data-en="Location" data-it="Luogo">Localisation</h4><p>Menton, Alpes-Maritimes<br>France (06500)</p></div>
+        <div class="info-block"><h4 data-fr="T&#233;l&#233;phone" data-en="Phone" data-it="Telefono">T&#233;l&#233;phone</h4><p><a href="tel:+330698955357">(+33) 06 98 95 53 57</a></p></div>
+        <div class="info-block"><h4>Email</h4><p><a href="mailto:parlerfrancais06@gmail.com">parlerfrancais06@gmail.com</a></p></div>
+        <div class="info-block"><h4>LinkedIn</h4><p><a href="https://linkedin.com/in/eveline-regis" target="_blank">Eveline Regis &#8594;</a></p></div>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- EXPERIENCE -->
-<section class="experience" id="experience">
-  <div class="container">
-    <span class="section-label" style="color:var(--gold)">Expérience</span>
-    <h2 class="section-title">Parcours<br><em>professionnel</em></h2>
-    <div class="exp-timeline">
-
-      <div class="exp-item">
-        <div class="exp-date">Fév. 2025 – Jan. 2026</div>
-        <div class="exp-role">Formatrice de Français FLE</div>
-        <div class="exp-org">ID Formation · Menton</div>
-        <div class="exp-desc">
-          Animation de cours de français FLE et d'alphabétisation pour un public adulte multiculturel. Conception de supports pédagogiques adaptés aux niveaux évalués par diagnostic initial (ICOP). Suivi pédagogique et administratif complet (bilans, évaluations, PIF, livret stagiaires). Préparation aux évaluations Cloé. Gestion de la vie de l'école et accueil des nouveaux arrivants.
-        </div>
-      </div>
-
-      <div class="exp-item">
-        <div class="exp-date">Juin 2020 – Jan. 2025</div>
-        <div class="exp-role">Formatrice Français FLE</div>
-        <div class="exp-org">ESCCOM · FLC Formation · Languazur · Menton, Nice, Juan-les-Pins, Cagnes-sur-Mer</div>
-        <div class="exp-desc">
-          Animation d'ateliers de grammaire, conversation, écriture et phonologie. Évaluation régulière du niveau linguistique. Organisation d'activités interactives et de jeux de rôle. Accompagnement des apprenants à des sorties culturelles. Collaboration avec France Travail et la Mission Locale.
-        </div>
-      </div>
-
-      <div class="exp-item">
-        <div class="exp-date">Avr. 2018 – présent</div>
-        <div class="exp-role">Formatrice FLE Indépendante</div>
-        <div class="exp-org">Auto-entrepreneuse · Entreprises & Particuliers · Menton</div>
-        <div class="exp-desc">
-          Cours en présentiel et distanciel. Préparation d'ateliers de grammaire, écriture, phonétique/phonologie et conversation. Utilisation de méthodes diversifiées pour maintenir la motivation en classe virtuelle.
-        </div>
-      </div>
-
-      <div class="exp-item">
-        <div class="exp-date">Nov. 2017 – Mars 2018</div>
-        <div class="exp-role">Formatrice d'Italien</div>
-        <div class="exp-org">La Lingua di Dante · Cuneo, Italie</div>
-        <div class="exp-desc">
-          Enseignement de l'italien avec conception de supports pédagogiques. Suivi individualisé des élèves et animation de réunions parents-professeurs.
-        </div>
-      </div>
-
-      <div class="exp-item">
-        <div class="exp-date">Mars 2016 – Août 2017</div>
-        <div class="exp-role">Formatrice Bénévole</div>
-        <div class="exp-org">Menton Plus · Mairie de Menton</div>
-        <div class="exp-desc">
-          Animation de sessions de formation pour divers publics et niveaux de compétences. Création de supports pédagogiques pour classes hétérogènes.
-        </div>
-      </div>
-
-      <div class="exp-item">
-        <div class="exp-date">Fév. 2002 – Nov. 2016</div>
-        <div class="exp-role">Secrétaire Juridique Trilingue</div>
-        <div class="exp-org">Barclays Bank PLC · Monaco</div>
-        <div class="exp-desc">
-          Accueil de clients internationaux. Gestion de tâches administratives et juridiques en français, anglais et italien sur plus de 14 ans.
-        </div>
-      </div>
-
     </div>
   </div>
 </section>
@@ -921,181 +287,281 @@
 <!-- SKILLS -->
 <section class="skills" id="skills">
   <div class="container">
-    <span class="section-label">Compétences</span>
-    <h2 class="section-title reveal">Savoir-faire<br><em>pédagogique</em></h2>
+    <span class="sec-label reveal" data-fr="Comp&#233;tences" data-en="Skills" data-it="Competenze">Comp&#233;tences</span>
+    <h2 class="sec-title reveal" data-fr="Savoir-faire <em>p&#233;dagogique</em>" data-en="Teaching <em>expertise</em>" data-it="Competenze <em>pedagogiche</em>">Savoir-faire <em>p&#233;dagogique</em></h2>
     <div class="skills-grid">
-      <div class="skill-card reveal">
-        <span class="skill-icon">🗣️</span>
-        <h3>Expression Orale</h3>
-        <p>Entraînement intensif à la production et compréhension orales. Phonologie, aisance et fluidité. Préparation aux épreuves Cloé.</p>
-      </div>
-      <div class="skill-card reveal">
-        <span class="skill-icon">✍️</span>
-        <h3>Grammaire & Écrit</h3>
-        <p>Ateliers de grammaire, vocabulaire et production écrite. Correction de Certificat Voltaire. Approche progressive et créative.</p>
-      </div>
-      <div class="skill-card reveal">
-        <span class="skill-icon">📊</span>
-        <h3>Évaluation & Suivi</h3>
-        <p>Diagnostic initial ICOP, bilans continus et finaux. Suivi administratif rigoureux. Élaboration de progressions pédagogiques sur mesure.</p>
-      </div>
-      <div class="skill-card reveal">
-        <span class="skill-icon">💻</span>
-        <h3>Formation à Distance</h3>
-        <p>Cours en présentiel et distanciel. Outils numériques et ressources multimédias. Animation interactive de classes virtuelles.</p>
-      </div>
-      <div class="skill-card reveal">
-        <span class="skill-icon">🤝</span>
-        <h3>Relation Apprenante</h3>
-        <p>Écoute active, patience, tolérance. Approche centrée sur l'apprenant. Confiance en soi et motivation au cœur de la pédagogie.</p>
-      </div>
-      <div class="skill-card reveal">
-        <span class="skill-icon">🌍</span>
-        <h3>Classes Hétérogènes</h3>
-        <p>Expérience avec publics multiculturels, demandeurs d'emploi, alphabétisation. Adaptation constante aux besoins individuels.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- EDUCATION -->
-<section class="education" id="education">
-  <div class="container">
-    <span class="section-label">Formation</span>
-    <h2 class="section-title reveal">Diplômes &<br><em>certifications</em></h2>
-    <div class="edu-grid">
-      <div class="edu-item reveal">
-        <div class="edu-year">Nov. 2024 – Déc. 2025</div>
-        <div class="edu-degree">Parcours Avancé : Enseigner le Français Langue Étrangère</div>
-        <div class="edu-place">Alliance Française · Vichy</div>
-      </div>
-      <div class="edu-item reveal">
-        <div class="edu-year">Janv. 2026</div>
-        <div class="edu-degree">Attestation de Suivi DEC · DELF Prim FEI</div>
-        <div class="edu-place">Paris</div>
-      </div>
-      <div class="edu-item reveal">
-        <div class="edu-year">Fév. 2021</div>
-        <div class="edu-degree">Certificat : Enseigner le Français FLE Aujourd'hui</div>
-        <div class="edu-place">Alliance Française · Vichy</div>
-      </div>
-      <div class="edu-item reveal">
-        <div class="edu-year">Déc. 2020</div>
-        <div class="edu-degree">Certificat : Enseigner à Distance et Animer les Classes</div>
-        <div class="edu-place">Alliance Française · Vichy</div>
-      </div>
-      <div class="edu-item reveal">
-        <div class="edu-year">Déc. 2020</div>
-        <div class="edu-degree">Attestation : Bien Prononcer le Français pour l'Enseignement</div>
-        <div class="edu-place">Alliance Française · Padoue, Italie</div>
-      </div>
-      <div class="edu-item reveal">
-        <div class="edu-year">1994</div>
-        <div class="edu-degree">EUROFORM : Formation en Langues Étrangères & Marketing</div>
-        <div class="edu-place">Chambre de Commerce · Lyon</div>
-      </div>
-      <div class="edu-item reveal">
-        <div class="edu-year">1992 – 1993</div>
-        <div class="edu-degree">Perfectionnement en Langues Étrangères</div>
-        <div class="edu-place">Université de Langues Étrangères · Gênes</div>
-      </div>
-      <div class="edu-item reveal">
-        <div class="edu-year">1987 – 1992</div>
-        <div class="edu-degree">Baccalauréat en Langues Étrangères</div>
-        <div class="edu-place">Lycée G. Deledda · Savone, Italie</div>
-      </div>
+      <div class="skill-card reveal"><span class="skill-icon">&#x1F5E3;&#xFE0F;</span><h3 data-fr="Expression Orale" data-en="Oral Communication" data-it="Comunicazione Orale">Expression Orale</h3><p data-fr="Entra&#238;nement intensif &#224; la production et compr&#233;hension orales. Phonologie, aisance et fluidit&#233;. Pr&#233;paration aux &#233;preuves Clo&#233;." data-en="Intensive speaking and listening practice. Phonology, fluency and pronunciation coaching. Clo&#233; oral exam preparation." data-it="Pratica intensiva di produzione e comprensione orali. Conversazione; fonologia e fonetica. Preparazione agli esami Clo&#233;.">Entra&#238;nement intensif &#224; la production et compr&#233;hension orales. Phonologie, aisance et fluidit&#233;. Pr&#233;paration aux &#233;preuves Clo&#233;.</p></div>
+      <div class="skill-card reveal"><span class="skill-icon">&#x270D;&#xFE0F;</span><h3 data-fr="Grammaire &amp; &#201;crit" data-en="Grammar &amp; Writing" data-it="Grammatica &amp; Scrittura">Grammaire &amp; &#201;crit</h3><p data-fr="Ateliers de grammaire, vocabulaire et production &#233;crite. Pr&#233;paration au Certificat Voltaire. Approche progressive et cr&#233;ative." data-en="Grammar, vocabulary and writing workshops. Certificat Voltaire preparation. Progressive and creative approach." data-it="Workshop di grammatica, vocabolario e produzione scritta. Preparazione al Certificat Voltaire.">Ateliers de grammaire, vocabulaire et production &#233;crite. Pr&#233;paration au Certificat Voltaire. Approche progressive et cr&#233;ative.</p></div>
+      <div class="skill-card reveal"><span class="skill-icon">&#x1F4CA;</span><h3 data-fr="&#201;valuation &amp; Suivi" data-en="Assessment &amp; Follow-up" data-it="Valutazione &amp; Monitoraggio">&#201;valuation &amp; Suivi</h3><p data-fr="Diagnostic initial ICOP, bilans continus et finaux. Suivi administratif rigoureux. &#201;laboration de progressions p&#233;dagogiques sur mesure." data-en="ICOP initial diagnostics, continuous and final assessments. Rigorous administrative follow-up. Bespoke learning progressions." data-it="Diagnostica ICOP, valutazioni continue e finali. Monitoraggio amministrativo. Progressioni pedagogiche personalizzate.">Diagnostic initial ICOP, bilans continus et finaux. Suivi administratif rigoureux. &#201;laboration de progressions p&#233;dagogiques sur mesure.</p></div>
+      <div class="skill-card reveal"><span class="skill-icon">&#x1F4BB;</span><h3 data-fr="Formation &#224; Distance" data-en="Online Teaching" data-it="Insegnamento Online">Formation &#224; Distance</h3><p data-fr="Cours en pr&#233;sentiel et distanciel. Outils num&#233;riques et ressources multim&#233;dias. Animation interactive de classes virtuelles." data-en="In-person and remote course delivery. Digital tools and multimedia resources. Interactive virtual classroom management." data-it="Corsi in presenza e a distanza. Strumenti digitali e risorse multimediali.">Cours en pr&#233;sentiel et distanciel. Outils num&#233;riques et ressources multim&#233;dias. Animation interactive de classes virtuelles.</p></div>
+      <div class="skill-card reveal"><span class="skill-icon">&#x1F91D;</span><h3 data-fr="Relation Apprenante" data-en="Learner Relations" data-it="Relazione con gli Studenti">Relation Apprenante</h3><p data-fr="&#201;coute active, patience, tol&#233;rance. Approche centr&#233;e sur l&#39;apprenant. Confiance en soi et motivation au c&#339;ur de la p&#233;dagogie." data-en="Active listening, patience and tolerance. Learner-centred approach. Self-confidence and motivation at the heart of every lesson." data-it="Ascolto attivo, pazienza, tolleranza. Approccio centrato sull&#39;apprendente. Fiducia e motivazione al centro della pedagogia.">&#201;coute active, patience, tol&#233;rance. Approche centr&#233;e sur l&#39;apprenant. Confiance en soi et motivation au c&#339;ur de la p&#233;dagogie.</p></div>
+      <div class="skill-card reveal"><span class="skill-icon">&#x1F30D;</span><h3 data-fr="Classes H&#233;t&#233;rog&#232;nes" data-en="Diverse Classrooms" data-it="Classi Eterogene">Classes H&#233;t&#233;rog&#232;nes</h3><p data-fr="Exp&#233;rience avec publics multiculturels, demandeurs d&#39;emploi, alphab&#233;tisation. Adaptation constante aux besoins individuels." data-en="Extensive experience with multicultural learners, job seekers and literacy programmes. Constant adaptation to individual needs." data-it="Ampia esperienza con studenti multiculturali, persone in cerca di lavoro e alfabetizzazione.">Exp&#233;rience avec publics multiculturels, demandeurs d&#39;emploi, alphab&#233;tisation. Adaptation constante aux besoins individuels.</p></div>
     </div>
   </div>
 </section>
 
 <!-- LANGUAGES -->
-<section class="languages">
+<section class="languages" id="languages">
   <div class="container">
-    <span class="section-label">Langues</span>
-    <h2 class="section-title reveal">Compétences<br><em>linguistiques</em></h2>
+    <span class="sec-label reveal" data-fr="Langues" data-en="Languages" data-it="Lingue">Langues</span>
+    <h2 class="sec-title reveal" data-fr="Comp&#233;tences <em>linguistiques</em>" data-en="Linguistic <em>profile</em>" data-it="Profilo <em>linguistico</em>">Comp&#233;tences <em>linguistiques</em></h2>
     <div class="lang-grid">
-      <div class="lang-card native reveal">
-        <div class="lang-name">Italien</div>
-        <div class="lang-level">Langue maternelle</div>
+      <div class="lang-card native reveal"><div class="lang-name" data-fr="Fran&#231;ais" data-en="French" data-it="Francese">Fran&#231;ais</div><div class="lang-level" data-fr="Courant &#183; Sp&#233;cialiste FLE" data-en="Fluent &#183; FLE Specialist" data-it="Fluente &#183; Specialista FLE">Courant &#183; Sp&#233;cialiste FLE</div></div>
+      <div class="lang-card reveal"><div class="lang-name" data-fr="Italien" data-en="Italian" data-it="Italiano">Italien</div><div class="lang-level" data-fr="Bi-Langue &#183; Maternelle" data-en="Bi-Langue &#183; Native" data-it="Bi-Lingua &#183; Madrelingua">Bi-Langue &#183; Maternelle</div></div>
+      <div class="lang-card reveal"><div class="lang-name" data-fr="Anglais" data-en="English" data-it="Inglese">Anglais</div><div class="lang-level" data-fr="Courant" data-en="Fluent" data-it="Fluente">Courant</div></div>
+      <div class="lang-card reveal"><div class="lang-name" data-fr="Allemand" data-en="German" data-it="Tedesco">Allemand</div><div class="lang-level" data-fr="Pratique" data-en="Conversational" data-it="Conversazionale">Pratique</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CALENDAR -->
+<section class="cal-section" id="calendar">
+  <div class="container">
+    <span class="sec-label reveal" data-fr="Disponibilit&#233;s" data-en="Availability" data-it="Disponibilit&#224;">Disponibilit&#233;s</span>
+    <h2 class="sec-title reveal" data-fr="R&#233;server une <em>session</em>" data-en="Book a <em>session</em>" data-it="Prenota una <em>sessione</em>">R&#233;server une <em>session</em></h2>
+    <div class="cal-grid reveal">
+      <div class="cal-box">
+        <div class="cal-header"><div class="cal-month-lbl" id="calLbl"></div><div class="cal-navs"><button onclick="chMo(-1)">&#8249;</button><button onclick="chMo(1)">&#8250;</button></div></div>
+        <div class="cal-dh"><span>L</span><span>M</span><span>M</span><span>J</span><span>V</span><span>S</span><span>D</span></div>
+        <div class="cal-days" id="calDays"></div>
+        <div class="cal-legend">
+          <span><span class="dot" style="background:#ede9e0;border-radius:2px"></span><span data-fr="Disponible" data-en="Available" data-it="Disponibile">Disponible</span></span>
+          <span><span class="dot" style="background:#f0e8d8;border-radius:2px"></span><span data-fr="R&#233;serv&#233;" data-en="Booked" data-it="Prenotato">R&#233;serv&#233;</span></span>
+          <span><span class="dot" style="background:var(--deep);border-radius:50%"></span><span data-fr="Aujourd&#39;hui" data-en="Today" data-it="Oggi">Aujourd&#39;hui</span></span>
+        </div>
       </div>
-      <div class="lang-card reveal">
-        <div class="lang-name">Français</div>
-        <div class="lang-level">Courant · FLE</div>
-      </div>
-      <div class="lang-card reveal">
-        <div class="lang-name">Anglais</div>
-        <div class="lang-level">Courant</div>
-      </div>
-      <div class="lang-card reveal">
-        <div class="lang-name">Allemand</div>
-        <div class="lang-level">Pratique</div>
+      <div class="cal-info">
+        <h4 data-fr="Cr&#233;neaux disponibles" data-en="Available slots" data-it="Disponibilit&#224;">Cr&#233;neaux disponibles</h4>
+        <p data-fr="Disponible du lundi au vendredi, matin et apr&#232;s-midi. En pr&#233;sentiel &#224; Menton ou en ligne. Cliquez sur une date pour ouvrir le formulaire de r&#233;servation." data-en="Available Monday to Friday, mornings and afternoons. In-person in Menton or online. Click a date to open the booking form." data-it="Disponibile dal luned&#236; al venerd&#236;. In presenza a Menton o online. Clicca una data per prenotare.">Disponible du lundi au vendredi, matin et apr&#232;s-midi. En pr&#233;sentiel &#224; Menton ou en ligne. Cliquez sur une date pour ouvrir le formulaire de r&#233;servation.</p>
+        <div class="slot-blk"><span class="slot-lbl" data-fr="Matin" data-en="Morning" data-it="Mattina">Matin</span><div class="slot-times">9:00 &#160;&#183;&#160; 10:00 &#160;&#183;&#160; 11:00</div></div>
+        <div class="slot-blk"><span class="slot-lbl" data-fr="Apr&#232;s-midi" data-en="Afternoon" data-it="Pomeriggio">Apr&#232;s-midi</span><div class="slot-times">14:00 &#160;&#183;&#160; 15:00 &#160;&#183;&#160; 16:00 &#160;&#183;&#160; 17:00</div></div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <div class="container">
+    <span class="sec-label reveal" data-fr="T&#233;moignages" data-en="Testimonials" data-it="Testimonianze">T&#233;moignages</span>
+    <h2 class="sec-title reveal" data-fr="Ce que disent les <em>&#233;l&#232;ves</em>" data-en="What students <em>say</em>" data-it="Cosa dicono gli <em>studenti</em>">Ce que disent les <em>&#233;l&#232;ves</em></h2>
+    <div class="testi-grid">
+      <div class="testi-card reveal">
+        <span class="qm">&#8220;</span>
+        <p class="testi-text">J&#39;ai connu la prof Eveline quand j&#39;ai d&#233;m&#233;nag&#233; en France il y a 6 ans. J&#39;avais &#233;tudi&#233; le fran&#231;ais &#224; l&#39;&#233;poque du lyc&#233;e mais j&#39;avais besoin de reprendre la langue de 0 et surtout de reprendre la confiance pour parler et m&#39;exprimer sur le travail. On a fait ensemble les le&#231;ons online adapt&#233;es &#224; mes besoins et comp&#233;tences, j&#39;ai trouv&#233; une vraie professionnelle tr&#232;s disponible et avec un grand c&#339;ur&#160;!</p>
+        <div class="testi-author"><div class="tav">B</div><div><div class="a-name">B&#233;atrice Adobati</div><div class="a-detail">&#201;l&#232;ve &#183; Cours en ligne</div></div></div>
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      </div>
+      <div class="testi-card reveal">
+        <span class="qm">&#8220;</span>
+        <p class="testi-text">Je tiens &#224; vous remercier sinc&#232;rement pour votre travail et votre patience. Merci d&#39;avoir pris le temps de m&#39;expliquer les choses difficiles avec des mots simples. Gr&#226;ce &#224; vous, je sais maintenant lire et &#233;crire, mais surtout, je commence &#224; &#171;&#160;ressentir&#160;&#187; la langue fran&#231;aise. Le plus important pour moi, c&#39;est la confiance que vous m&#39;avez donn&#233;e. Gr&#226;ce &#224; votre aide, j&#39;ai surmont&#233; ma peur et j&#39;ai enfin commenc&#233; &#224; parler&#160;! Vous &#234;tes une enseignante exceptionnelle.</p>
+        <div class="testi-author"><div class="tav">&#9733;</div><div><div class="a-name">Une &#233;l&#232;ve</div><div class="a-detail">Avec tout mon respect et ma gratitude</div></div></div>
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      </div>
+      <div class="testi-card reveal">
+        <span class="qm">&#8220;</span>
+        <p class="testi-text">Vous nous avez accompagn&#233;s, encourag&#233;s et aid&#233;s &#224; grandir. Votre passion et votre patience ont vraiment compt&#233; pour nous. Vous avez cru en chacun de nous &#8212; cette confiance nous a donn&#233; de la force. Vous nous avez appris &#224; r&#233;fl&#233;chir, &#224; progresser et &#224; avancer avec confiance. Ce que vous nous avez apport&#233; restera avec nous. Vous ne passez pas&#160;: vous restez dans ce que nous sommes devenus.</p>
+        <div class="testi-author"><div class="tav">&#10022;</div><div><div class="a-name">Vos &#201;l&#232;ves</div><div class="a-detail">Avec toute notre gratitude</div></div></div>
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="container">
+    <span class="sec-label reveal" data-fr="Tarifs" data-en="Pricing" data-it="Tariffe">Tarifs</span>
+    <h2 class="sec-title reveal" data-fr="Des tarifs simples et <em>transparents</em>" data-en="Simple, <em>transparent</em> rates" data-it="Tariffe semplici e <em>trasparenti</em>">Des tarifs simples et <em>transparents</em></h2>
+    <div class="pricing-grid">
+      <div class="price-card reveal"><span class="price-tier" data-fr="D&#233;couverte" data-en="Discovery" data-it="Scoperta">D&#233;couverte</span><div class="price-amount" data-fr="Gratuit" data-en="Free" data-it="Gratuito">Gratuit</div><div class="price-sub" data-fr="1&#232;re session &#183; 30 min" data-en="1st session &#183; 30 min" data-it="1&#170; sessione &#183; 30 min">1&#232;re session &#183; 30 min</div><div class="price-divl"></div><div class="price-features" data-fr="Cours d&#39;essai<br>Sans engagement<br>En ligne ou pr&#233;sentiel" data-en="Trial lesson<br>No commitment<br>Online or in-person" data-it="Lezione di prova<br>Nessun impegno<br>Online o in presenza">Cours d&#39;essai<br>Sans engagement<br>En ligne ou pr&#233;sentiel</div></div>
+      <div class="price-card reveal"><span class="price-tier" data-fr="Individuel" data-en="Single" data-it="Singolo">Individuel</span><div class="price-amount">&#8364;33</div><div class="price-sub" data-fr="par session &#183; 60 min" data-en="per session &#183; 60 min" data-it="per sessione &#183; 60 min">par session &#183; 60 min</div><div class="price-divl"></div><div class="price-features" data-fr="&#192; la carte<br>R&#233;servation flexible<br>En ligne ou pr&#233;sentiel" data-en="Pay as you go<br>Flexible booking<br>Online or in-person" data-it="A Lezione<br>Prenotazione flessibile<br>Online o in presenza">&#192; la carte<br>R&#233;servation flexible<br>En ligne ou pr&#233;sentiel</div></div>
+      <div class="price-card feat reveal"><span class="price-badge" data-fr="Meilleure offre" data-en="Best value" data-it="Miglior valore">Meilleure offre</span><span class="price-tier" data-fr="Pack &#183; 10 sessions" data-en="Pack &#183; 10 sessions" data-it="Pack &#183; 10 sessioni">Pack &#183; 10 sessions</span><div class="price-amount">&#8364;330</div><div class="price-sub" data-fr="10 sessions &#183; &#201;conomisez &#8364;270" data-en="10 sessions &#183; Save &#8364;270" data-it="10 sessioni &#183; Risparmia &#8364;270">10 sessions &#183; &#201;conomisez &#8364;270</div><div class="price-divl"></div><div class="price-features" data-fr="Choix le plus populaire<br>Valable 6 mois<br>En ligne ou pr&#233;sentiel" data-en="Most popular<br>6 months validity<br>Online or in-person" data-it="Scelta pi&#249; popolare<br>Validit&#224; 6 mesi<br>Online o in presenza">Choix le plus populaire<br>Valable 6 mois<br>En ligne ou pr&#233;sentiel</div></div>
+      <div class="price-card reveal"><span class="price-tier" data-fr="Entreprise" data-en="Corporate" data-it="Aziendale">Entreprise</span><div class="price-amount" style="font-size:1.8rem" data-fr="Sur devis" data-en="On request" data-it="Su richiesta">Sur devis</div><div class="price-sub" data-fr="Sessions de groupe" data-en="Group sessions" data-it="Sessioni di gruppo">Sessions de groupe</div><div class="price-divl"></div><div class="price-features" data-fr="Programmes sur mesure<br>Facturation entreprise<br>En ligne ou pr&#233;sentiel" data-en="Tailored programmes<br>Company invoicing<br>Online or in-person" data-it="Programmi personalizzati<br>Fatturazione aziendale<br>Online o in presenza">Programmes sur mesure<br>Facturation entreprise<br>En ligne ou pr&#233;sentiel</div></div>
+    </div>
+    <p class="pricing-note" data-fr="Tous les moyens de paiement accept&#233;s &#183; Factures disponibles sur demande" data-en="All major payment methods accepted &#183; Invoices available on request" data-it="Tutti i principali metodi di pagamento accettati &#183; Fatture disponibili su richiesta">Tous les moyens de paiement accept&#233;s &#183; Factures disponibles sur demande</p>
   </div>
 </section>
 
 <!-- CONTACT -->
 <section class="contact" id="contact">
   <div class="container">
-    <span class="section-label" style="color:var(--gold)">Contact</span>
-    <h2 class="section-title">Travaillons<br><em>ensemble</em></h2>
-    <p class="contact-intro">
-      Vous cherchez une formatrice FLE expérimentée et passionnée ? Je suis disponible pour des cours particuliers, des formations en entreprise ou des collaborations institutionnelles.
-    </p>
+    <span class="sec-label" data-fr="Contact" data-en="Contact" data-it="Contatto">Contact</span>
+    <h2 class="sec-title" data-fr="Travaillons <em>ensemble</em>" data-en="Let&#39;s work <em>together</em>" data-it="Lavoriamo <em>insieme</em>">Travaillons <em>ensemble</em></h2>
+    <p class="contact-intro" data-fr="Vous cherchez une formatrice FLE exp&#233;riment&#233;e et passionn&#233;e&#160;? Je suis disponible pour des cours particuliers, des formations en entreprise ou des collaborations institutionnelles." data-en="Looking for an experienced and passionate FLE trainer? Available for private lessons, corporate training or institutional collaborations." data-it="Cerchi una formatrice FLE esperta e appassionata? Disponibile per lezioni private, formazione aziendale o collaborazioni istituzionali.">Vous cherchez une formatrice FLE exp&#233;riment&#233;e et passionn&#233;e&#160;? Je suis disponible pour des cours particuliers, des formations en entreprise ou des collaborations institutionnelles.</p>
     <div class="contact-links">
-      <a href="mailto:evireg@gmail.com" class="contact-btn primary">
-        ✉ Envoyer un email
-      </a>
-      <a href="tel:+330698955357" class="contact-btn secondary">
-        📞 06 98 95 53 57
-      </a>
-      <a href="https://linkedin.com/in/eveline-regis" target="_blank" class="contact-btn secondary">
-        in LinkedIn
-      </a>
+      <a href="mailto:parlerfrancais06@gmail.com" class="contact-btn primary"><span data-fr="&#9993; Envoyer un email" data-en="&#9993; Send an email" data-it="&#9993; Invia un&#39;email">&#9993; Envoyer un email</span></a>
+      <a href="tel:+330698955357" class="contact-btn secondary">&#128222; 06 98 95 53 57</a>
+      <a href="https://linkedin.com/in/eveline-regis" target="_blank" class="contact-btn secondary">in LinkedIn</a>
     </div>
     <div class="certif-badges">
-      <span class="badge">Alliance Française</span>
       <span class="badge">DELF / DALF</span>
       <span class="badge">Certificat Voltaire</span>
-      <span class="badge">Cloé · Socle</span>
-      <span class="badge">FLE / FLI</span>
-      <span class="badge">Alphabétisation</span>
-      <span class="badge">France Travail</span>
+      <span class="badge">Clo&#233;</span>
+      <span class="badge">FLE / FLE adapt&#233;</span>
+      <span class="badge">Alphab&#233;tisation</span>
+    </div>
+    <div style="display:flex;justify-content:center;gap:1.2rem;margin-top:2.5rem;flex-wrap:wrap;">
+      <a href="https://www.instagram.com/reel/DWeB5uliH0u/?igsh=MTl5dHVnMHBya3dpeA==" target="_blank" class="contact-btn secondary" style="padding:.75rem 1.6rem;font-size:.7rem;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="flex-shrink:0"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        Instagram
+      </a>
+      <a href="https://www.facebook.com/share/1BCGkwHwcf/?mibextid=wwXIfr" target="_blank" class="contact-btn secondary" style="padding:.75rem 1.6rem;font-size:.7rem;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        Facebook
+      </a>
+      <a href="https://www.tiktok.com/@parlerfrancaisaveceve?_r=1&_t=ZN-96sJ1R0y5Mk" target="_blank" class="contact-btn secondary" style="padding:.75rem 1.6rem;font-size:.7rem;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.32 6.32 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/></svg>
+        TikTok
+      </a>
     </div>
   </div>
 </section>
 
 <footer>
-  <p>© 2026 Eveline Regis — Formatrice FLE · Menton, France</p>
-  <p>Trilingue Français · Anglais · Italien</p>
+  <p>&#169; 2026 Parler Fran&#231;ais &#183; Menton, France</p>
+  <p data-fr="Fran&#231;ais &#183; Italien &#183; Anglais &#183; Allemand" data-en="French &#183; Italian &#183; English &#183; German" data-it="Francese &#183; Italiano &#183; Inglese &#183; Tedesco">Fran&#231;ais &#183; Italien &#183; Anglais &#183; Allemand</p>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
-  // Intersection Observer for scroll animations
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => {
-          entry.target.classList.add('visible');
-        }, entry.target.dataset.delay || 0);
-      }
-    });
-  }, { threshold: 0.1 });
+/* ============================================================
+   EMAILJS SETUP
+   1. Free account at https://www.emailjs.com
+   2. Gmail service linked to parlerfrancais06@gmail.com
+   3. Two templates — see comments below
+   ============================================================
+   TEMPLATE A "booking_notify" -> to trainer
+   Subject: Nouvelle reservation - {{student_name}} - {{date}}
+   Body: Nom: {{student_name}} / Email: {{student_email}} /
+         Tel: {{student_phone}} / Date: {{date}} a {{slot}} /
+         Format: {{session_format}} / Niveau: {{level}} /
+         Message: {{message}}
 
-  document.querySelectorAll('.reveal, .exp-item').forEach((el, i) => {
-    el.dataset.delay = (i % 3) * 100;
-    observer.observe(el);
-  });
+   TEMPLATE B "booking_confirm" -> to student
+   To field: {{student_email}}
+   Subject: Confirmation - Parler Francais - {{date}}
+   Body: {{confirm_body}}
+   ============================================================
+   UPDATE BANK DETAILS BEFORE PUBLISHING:                    */
+const EJ_KEY  = 'YOUR_PUBLIC_KEY';
+const EJ_SVC  = 'YOUR_SERVICE_ID';
+const EJ_NTF  = 'booking_notify';
+const EJ_CNF  = 'booking_confirm';
+const BANK    = 'CIC';
+const ACNAME  = 'Eveline Regis';
+const IBAN    = 'FR76 XXXX XXXX XXXX XXXX XXXX XXX';
+const BIC     = 'CMCIFRPP';
+emailjs.init(EJ_KEY);
 
-  // Nav scroll effect
-  window.addEventListener('scroll', () => {
-    const nav = document.querySelector('nav');
-    if (window.scrollY > 50) {
-      nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.08)';
-    } else {
-      nav.style.boxShadow = 'none';
-    }
-  });
+let lang='fr';
+const T={
+  fr:{t:'R\u00e9server une session',n:'Pr\u00e9nom & Nom',ph:'T\u00e9l\u00e9phone',em:'Adresse email',sl:'Cr\u00e9neau',ty:'Format',lv:'Niveau',mg:'Message (optionnel)',on:'En ligne',ip:'En pr\u00e9sentiel \u2013 Menton',d1:'D\u00e9butant (A1\u2013A2)',d2:'Interm\u00e9diaire (B1\u2013B2)',d3:'Avanc\u00e9 (C1\u2013C2)',d4:'Alphab\u00e9tisation',sb:'Confirmer la r\u00e9servation',ca:'Annuler',ot:'Demande envoy\u00e9e\u00a0!',om:"Votre demande a \u00e9t\u00e9 re\u00e7ue. Un email de confirmation avec les coordonn\u00e9es bancaires vous a \u00e9t\u00e9 envoy\u00e9. Parler Fran\u00e7ais vous contactera tr\u00e8s prochainement.",sn:'Envoi\u2026'},
+  en:{t:'Book a session',n:'Full name',ph:'Phone',em:'Email address',sl:'Preferred slot',ty:'Format',lv:'French level',mg:'Message (optional)',on:'Online',ip:'In-person \u2013 Menton',d1:'Beginner (A1\u2013A2)',d2:'Intermediate (B1\u2013B2)',d3:'Advanced (C1\u2013C2)',d4:'Literacy',sb:'Confirm booking',ca:'Cancel',ot:'Request sent!',om:'Your booking request has been received. A confirmation email with bank details for payment has been sent to you.',sn:'Sending\u2026'},
+  it:{t:'Prenota una sessione',n:'Nome & Cognome',ph:'Telefono',em:'Indirizzo email',sl:'Slot preferito',ty:'Formato',lv:'Livello',mg:'Messaggio (opzionale)',on:'Online',ip:'In presenza \u2013 Menton',d1:'Principiante (A1\u2013A2)',d2:'Intermedio (B1\u2013B2)',d3:'Avanzato (C1\u2013C2)',d4:'Alfabetizzazione',sb:'Conferma prenotazione',ca:'Annulla',ot:'Richiesta inviata!',om:'La tua richiesta \u00e8 stata ricevuta. Una email di conferma con le coordinate bancarie \u00e8 stata inviata.',sn:'Invio\u2026'}
+};
+const MN={fr:['Janvier','F\u00e9vrier','Mars','Avril','Mai','Juin','Juillet','Ao\u00fbt','Septembre','Octobre','Novembre','D\u00e9cembre'],en:['January','February','March','April','May','June','July','August','September','October','November','December'],it:['Gennaio','Febbraio','Marzo','Aprile','Maggio','Giugno','Luglio','Agosto','Settembre','Ottobre','Novembre','Dicembre']};
+const booked=[19,20,24];
+let calDate=new Date(2026,4,1);
+let selDate='';
+const now=new Date();
+
+function setLang(l){
+  lang=l;
+  document.querySelectorAll('.lb').forEach(b=>b.classList.remove('active'));
+  document.querySelector('.lb[onclick="setLang(\''+l+'\')"]').classList.add('active');
+  document.querySelectorAll('[data-'+l+']').forEach(el=>el.innerHTML=el.getAttribute('data-'+l));
+  updModal();renderCal();
+}
+function g(id){return document.getElementById(id);}
+function updModal(){
+  const t=T[lang];
+  ['modalTitle',t.t,'lbl-name',t.n,'lbl-phone',t.ph,'lbl-email',t.em,'lbl-slot',t.sl,'lbl-type',t.ty,'lbl-level',t.lv,'lbl-msg',t.mg,'opt-online',t.on,'opt-inp',t.ip,'opt-deb',t.d1,'opt-int',t.d2,'opt-adv',t.d3,'opt-lit',t.d4,'btn-sub',t.sb,'btn-can',t.ca,'ok-title',t.ot,'ok-msg',t.om];
+  const pairs=[['modalTitle',t.t],['lbl-name',t.n],['lbl-phone',t.ph],['lbl-email',t.em],['lbl-slot',t.sl],['lbl-type',t.ty],['lbl-level',t.lv],['lbl-msg',t.mg],['opt-online',t.on],['opt-inp',t.ip],['opt-deb',t.d1],['opt-int',t.d2],['opt-adv',t.d3],['opt-lit',t.d4],['btn-sub',t.sb],['btn-can',t.ca],['ok-title',t.ot],['ok-msg',t.om]];
+  pairs.forEach(([id,v])=>{const el=g(id);if(el)el.textContent=v;});
+  const fp=[['f-name','Marie Dupont'],['f-email','votre@email.com'],['f-msg','Vos objectifs ou toute information utile\u2026']];
+  fp.forEach(([id,v])=>{const el=g(id);if(el)el.placeholder=v;});
+}
+function renderCal(){
+  const yr=calDate.getFullYear(),mo=calDate.getMonth();
+  const nm=MN[lang]||MN.fr;
+  g('calLbl').textContent=nm[mo]+' '+yr;
+  const first=new Date(yr,mo,1).getDay();
+  const dim=new Date(yr,mo+1,0).getDate();
+  const off=first===0?6:first-1;
+  let h='';
+  for(let i=0;i<off;i++)h+='<div class="cal-day"></div>';
+  for(let d=1;d<=dim;d++){
+    const dw=new Date(yr,mo,d).getDay();
+    const wk=dw===0||dw===6;
+    const isT=d===now.getDate()&&mo===now.getMonth()&&yr===now.getFullYear();
+    const isBk=booked.includes(d);
+    let c='cal-day';
+    if(isT)c+=' tod';
+    else if(isBk)c+=' bkd';
+    else if(!wk)c+=' avail';
+    const oc=(!wk&&!isBk&&!isT)?'onclick="openModal('+d+','+mo+','+yr+')"':'';
+    h+='<div class="'+c+'" '+oc+'>'+d+'</div>';
+  }
+  g('calDays').innerHTML=h;
+}
+function chMo(d){calDate.setMonth(calDate.getMonth()+d);renderCal();}
+
+function openModal(d,mo,yr){
+  selDate=d+' '+(MN[lang]||MN.fr)[mo]+' '+yr;
+  g('modalDateLbl').textContent=selDate;
+  g('modalForm').style.display='block';
+  g('modalOk').style.display='none';
+  g('modalOverlay').classList.add('open');
+  document.body.style.overflow='hidden';
+  updModal();
+}
+function closeModal(){
+  g('modalOverlay').classList.remove('open');
+  document.body.style.overflow='';
+  ['f-name','f-email','f-phone','f-msg'].forEach(id=>{const el=g(id);if(el)el.value='';});
+}
+g('modalOverlay').addEventListener('click',function(e){if(e.target===this)closeModal();});
+
+function buildBody(name,date,slot,fmt){
+  const bk='\n\nBanque : '+BANK+'\nTitulaire : '+ACNAME+'\nIBAN : '+IBAN+'\nBIC : '+BIC+'\nR\u00e9f\u00e9rence : '+name+' \u2013 '+date;
+  if(lang==='en'){const bk2='\n\nBank: '+BANK+'\nAccount: '+ACNAME+'\nIBAN: '+IBAN+'\nBIC: '+BIC+'\nRef: '+name+' - '+date;return 'Dear '+name+',\n\nThank you for booking with Parler Fran\u00e7ais!\n\nSession: '+date+' at '+slot+' ('+fmt+')\n\nPlease transfer payment to:'+bk2+'\n\nYour slot will be confirmed on receipt of payment.\n\nWarm regards,\nParler Fran\u00e7ais\nparlerfrancais06@gmail.com';}
+  if(lang==='it'){const bk2='\n\nBanca: '+BANK+'\nTitolare: '+ACNAME+'\nIBAN: '+IBAN+'\nBIC: '+BIC+'\nCausale: '+name+' - '+date;return 'Gentile '+name+',\n\nGrazie per la prenotazione!\n\nSessione: '+date+' alle '+slot+' ('+fmt+')\n\nEffettua il pagamento a:'+bk2+'\n\nIl tuo slot sar\u00e0 confermato.\n\nCordiali saluti,\nParler Fran\u00e7ais';}
+  return 'Cher(e) '+name+',\n\nMerci pour votre demande de r\u00e9servation chez Parler Fran\u00e7ais\u00a0!\n\nSession\u00a0: '+date+' \u00e0 '+slot+' ('+fmt+')\n\nAfin de confirmer votre cr\u00e9neau, merci d\u2019effectuer le virement bancaire suivant\u00a0:'+bk+'\n\nD\u00e8s r\u00e9ception du paiement, votre cr\u00e9neau sera d\u00e9finitivement confirm\u00e9.\n\nCordialement,\nParler Fran\u00e7ais\nparlerfrancais06@gmail.com\n(+33)\u00a006\u00a098\u00a095\u00a053\u00a057';
+}
+
+function submitBooking(){
+  const name=g('f-name').value.trim();
+  const email=g('f-email').value.trim();
+  const phone=g('f-phone').value.trim()||'\u2014';
+  const slot=g('f-slot').value;
+  const fmt=g('f-type').value;
+  const level=g('f-level').value;
+  const msg=g('f-msg').value.trim()||'\u2014';
+  const t=T[lang];
+  if(!name||!email){alert(lang==='en'?'Please enter your name and email.':lang==='it'?'Inserisci nome e email.':'Veuillez indiquer votre nom et votre email.');return;}
+  const btn=g('btn-sub');btn.textContent=t.sn;btn.disabled=true;
+  const np={student_name:name,student_email:email,student_phone:phone,date:selDate,slot:slot,session_format:fmt,level:level,message:msg,to_email:'parlerfrancais06@gmail.com'};
+  const cp={student_name:name,student_email:email,date:selDate,slot:slot,session_format:fmt,confirm_body:buildBody(name,selDate,slot,fmt),to_email:email};
+  emailjs.send(EJ_SVC,EJ_NTF,np)
+    .then(()=>emailjs.send(EJ_SVC,EJ_CNF,cp))
+    .then(()=>{g('modalForm').style.display='none';g('modalOk').style.display='block';})
+    .catch(err=>{
+      console.warn('EmailJS not configured — using mailto fallback',err);
+      var s=encodeURIComponent('R\u00e9servation \u2013 '+name+' \u2013 '+selDate+' '+slot);
+      var b=encodeURIComponent('Nom : '+name+'\nEmail : '+email+'\nT\u00e9l : '+phone+'\nDate : '+selDate+'\nCr\u00e9neau : '+slot+'\nFormat : '+fmt+'\nNiveau : '+level+'\nMessage : '+msg);
+      window.open('mailto:parlerfrancais06@gmail.com?subject='+s+'&body='+b);
+      g('modalForm').style.display='none';g('modalOk').style.display='block';
+    })
+    .finally(()=>{btn.disabled=false;btn.textContent=t.sb;});
+}
+
+const obs=new IntersectionObserver(entries=>{entries.forEach((e,i)=>{if(e.isIntersecting)setTimeout(()=>e.target.classList.add('visible'),(i%4)*120);});},{threshold:.12});
+document.querySelectorAll('.reveal,.exp-item').forEach(el=>obs.observe(el));
+window.addEventListener('scroll',()=>{g('mainNav').style.boxShadow=window.scrollY>40?'0 4px 30px rgba(26,21,16,.1)':'none';});
+
+renderCal();
+setLang('fr');
 </script>
 </body>
 </html>
